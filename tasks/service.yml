@@ -1,0 +1,7 @@
+---
+
+- name: ensure carbonapi is started
+  service:
+    name: carbonapi
+    state: started
+    enabled: true

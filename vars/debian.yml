@@ -1,0 +1,8 @@
+---
+
+carbonapi_dependencies:
+  - gnupg
+  - ca-certificates
+  - apt-transport-https
+
+sysconfig_directory: "/etc/default"

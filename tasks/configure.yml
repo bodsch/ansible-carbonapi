@@ -1,0 +1,13 @@
+---
+
+- name: create configs
+  template:
+    src: "etc/carbonapi/{{ item }}.j2"
+    dest: "/etc/carbonapi/{{ item }}"
+    backup: true
+  loop:
+    - carbonapi.yaml
+    - graphiteWeb.yaml
+    - graphTemplates.yaml
+  notify:
+    - restart carbonapi

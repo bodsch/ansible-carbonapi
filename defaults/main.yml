@@ -1,0 +1,55 @@
+---
+# If you are using plain go-carbon or graphite-clickhouse
+# you should set it to URL of go-carbon's carbonserver module
+# or graphite-clickhouse's http url.
+# Listen address, should always include hostname or ip address and a port.
+carbonapi_listen: 'localhost:8088'
+
+# Cache configurations
+# Type of caching. Valid: "mem", "memcache", "null"
+carbonapi_cache_type: mem
+# Cache limit in megabytes
+carbonapi_cache_size_mb: 5
+# Default cache timeout value. Identical to DEFAULT_CACHE_DURATION in graphite-web.
+carbonapi_cache_default_timeout: 60
+# Only used by memcache type of cache. List of memcache servers.
+carbonapi_cache_memcached_servers:
+  - "127.0.0.1:1234"
+  - "127.0.0.2:1235"
+
+# Amount of CPUs to use. 0 - unlimited
+carbonapi_cpu: 0
+
+# Host:port where to send internal metrics
+# Empty = disabled
+carbonapi_graphite_host: '127.0.0.1:2003'
+
+carbonapi_graphite_interval: '30s'
+carbonapi_graphite_prefix: 'carbon.api'
+# rules on how to construct metric name. For now only {prefix} and {fqdn} is supported.
+# {prefix} will be replaced with the content of {prefix}
+# {fqdn} will be repalced with fqdn
+carbonapi_graphite_pattern: '{prefix}.{fqdn}'
+
+# # Maximum backend request time for find requests.
+#carbonapi_upstreams_timeouts_find: 2s
+# # Maximum backend request time for render requests.
+# This is total one and doesn't take into account in-flight requests
+#carbonapi_upstreams_timeouts_render: 10s
+# # Timeout to connect to the server
+#carbonapi_upstreams_timeouts_connect: 200ms
+
+# "http://host:port" array of instances of carbonserver stores
+# It MUST be specified.
+carbonapi_upstreams_backends:
+  - "http://127.0.0.1:8081"
+
+# If not zero, enabled cache for find requests
+# This parameter controls when it will expire (in seconds)
+# Default: 600 (10 minutes)
+#  for example: /etc/carbonapi/graphTemplates.yaml
+carbonapi_graph_templates: ''
+carbonapi_expire_delay: 10
+
+carbonapi_logger_logfile: /var/log/carbonapi/carbonapi.log
+carbonapi_logger_loglevel: "info"

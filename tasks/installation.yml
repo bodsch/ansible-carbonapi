@@ -1,0 +1,6 @@
+---
+
+- name: install carbonapi package
+  package:
+    name: carbonapi
+    state: present

@@ -1,0 +1,6 @@
+---
+
+- name: restart carbonapi
+  service:
+    name: carbonapi
+    state: restarted

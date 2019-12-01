@@ -1,0 +1,31 @@
+---
+
+- name: install requirements
+  package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    "{{ carbonapi_dependencies }}"
+
+- block:
+    - name: add the apt signing key
+      apt_key:
+        url: https://packagecloud.io/go-graphite/stable/gpgkey
+        # validate_certs: false
+        state: present
+
+    # Add specified repository into sources list.
+    - name: add debian repository
+      apt_repository:
+        repo: deb https://packagecloud.io/go-graphite/stable/ubuntu/ bionic main
+        state: present
+
+  when: ansible_os_family | lower == 'debian'
+
+- name: create required directories
+  file:
+    dest: "{{ item }}"
+    state: directory
+  loop:
+    - /etc/carbonapi
+    - /var/log/carbonapi
