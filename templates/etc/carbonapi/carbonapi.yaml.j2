@@ -71,6 +71,9 @@ cpus: {{ carbonapi_cpu | int }}
 # Timezone, default - local
 tz: ""
 
+# For go-carbon --- it depends on how you use it.
+sendGlobsAsIs: true
+
 # functionsConfig:
 #   graphiteWeb: /etc/carbonapi/graphiteWeb.yaml
 
@@ -81,6 +84,13 @@ graphite:
   interval: "{{ carbonapi_graphite_interval }}"
   prefix: "{{ carbonapi_graphite_prefix }}"
   pattern: "{{ carbonapi_graphite_pattern }}"
+
+# Configures how often keep alive packets will be sent out
+keepAliveInterval: "30s"
+
+# Config to ensure we return version needed for providing integrated graphite docs in grafana
+# without supporting tags
+graphiteVersionForGrafana: 1.1.0
 
 # Maximium idle connections to carbonzipper
 idleConnections: 10
@@ -142,3 +152,25 @@ logger:
 
 # tagdb:
 #   url: "http://127.0.0.1:9090"
+
+monitoring:
+    timeInQueueExpHistogram:
+        start: 0.05
+        bucketsNum: 25
+        bucketSize: 2
+    requestDurationExpHistogram:
+        start: 0.05
+        bucketsNum: 20
+        bucketSize: 2
+    requestDurationLinHistogram:
+        start: 0.0
+        bucketsNum: 40
+        bucketSize: 0.05
+    findDurationExpHistogram:
+        start: 0.001
+        bucketsNum: 20
+        bucketSize: 2
+    findDurationLinHistogram:
+        start: 0.5
+        bucketsNum: 20
+        bucketSize: 0.5
