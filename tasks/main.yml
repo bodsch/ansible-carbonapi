@@ -10,11 +10,6 @@
     - "{{ ansible_os_family | lower }}.yml"
     - default.yml
 
-- include: variables.yml
-  become: true
-  tags:
-    - preparations
-
 - include: preparations.yml
   become: true
   tags:

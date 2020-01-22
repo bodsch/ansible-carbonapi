@@ -22,6 +22,26 @@
 
   when: ansible_os_family | lower == 'debian'
 
+- block:
+
+    # - name: Import EPEL GPG key.
+    #   rpm_key:
+    #     key: https://archive.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-{{ ansible_distribution_major_version }}
+    #     state: present
+
+    - name: install go-graphite repository
+      yum_repository:
+        name: go-graphite_stable
+        state: present
+        description: go-graphite_stable
+        baseurl: https://packagecloud.io/go-graphite/stable/el/{{ ansible_distribution_major_version }}/$basearch
+        gpgkey: https://packagecloud.io/go-graphite/stable/gpgkey
+        failovermethod: priority
+        gpgcheck: 0
+        enabled: 1
+
+  when: ansible_os_family | lower == 'redhat'
+
 - name: create required directories
   file:
     dest: "{{ item }}"

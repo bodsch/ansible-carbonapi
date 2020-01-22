@@ -1,3 +1,5 @@
 ---
 
+carbonapi_dependencies: []
+
 sysconfig_directory: "/etc/sysconfig"
