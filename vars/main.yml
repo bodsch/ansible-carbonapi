@@ -1,1 +1,22 @@
 ---
+
+_systemd_lib_directory:
+  default: /lib/systemd/system
+  debian: /lib/systemd/system
+  redhat: /usr/lib/systemd/system
+
+systemd_lib_directory: "{{
+  _systemd_lib_directory[ansible_os_family | lower] |
+  default(_systemd_lib_directory['default']) }}"
+
+_carbonapi_dependencies:
+  default: []
+  debian:
+    - gnupg
+    - ca-certificates
+    - apt-transport-https
+  redhat: []
+
+carbonapi_dependencies: "{{
+  _carbonapi_dependencies[ansible_os_family | lower] |
+  default(_carbonapi_dependencies['default']) }}"

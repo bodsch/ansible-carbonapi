@@ -32,12 +32,12 @@ carbonapi_graphite_prefix: 'carbon.api'
 carbonapi_graphite_pattern: '{prefix}.{fqdn}'
 
 # # Maximum backend request time for find requests.
-#carbonapi_upstreams_timeouts_find: 2s
+# carbonapi_upstreams_timeouts_find: 2s
 # # Maximum backend request time for render requests.
 # This is total one and doesn't take into account in-flight requests
-#carbonapi_upstreams_timeouts_render: 10s
+# carbonapi_upstreams_timeouts_render: 10s
 # # Timeout to connect to the server
-#carbonapi_upstreams_timeouts_connect: 200ms
+# carbonapi_upstreams_timeouts_connect: 200ms
 
 # "http://host:port" array of instances of carbonserver stores
 # It MUST be specified.

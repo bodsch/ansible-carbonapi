@@ -46,13 +46,13 @@ platforms:
   #   privileged: true
   #   volumes:
   #     - /sys/fs/cgroup:/sys/fs/cgroup:ro
-  #
-  # - name: debian-10
-  #   image: paulfantom/debian-molecule:10
-  #   docker_host: "${DOCKER_HOST:-unix://run/docker.sock}"
-  #   privileged: true
-  #   volumes:
-  #     - /sys/fs/cgroup:/sys/fs/cgroup:ro
+
+  - name: debian-10
+    image: paulfantom/debian-molecule:10
+    docker_host: "${DOCKER_HOST:-unix://run/docker.sock}"
+    privileged: true
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
 
 
 provisioner:
@@ -70,15 +70,13 @@ provisioner:
 scenario:
   name: default
   test_sequence:
-    # - lint
+    - lint
     - destroy
     - dependency
     - syntax
     - create
     - prepare
     - converge
-    # - idempotence
-    # - side_effect
     - verify
     - destroy
 
