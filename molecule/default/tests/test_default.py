@@ -34,11 +34,11 @@ def test_files(host, files):
     assert f.is_file
 
 
-def test_solr_service(host):
+def test_carbonapi_service(host):
     service = host.service("carbonapi")
 
-    # if( service.__class__.__name__ != 'SysvService' ):
-    assert service.is_enabled == True
+    if( service.__class__.__name__ != 'SysvService' ):
+        assert service.is_enabled == True
     assert service.is_running == True
 
 
@@ -49,8 +49,8 @@ def test_open_port(host, ports):
     for i in host.socket.get_listening_sockets():
         print( i )
 
-    solr = host.socket("tcp://{}".format(ports))
-    assert solr.is_listening
+    socket = host.socket("tcp://{}".format(ports))
+    assert socket.is_listening
 
 
 def test_storage_schemas(host):

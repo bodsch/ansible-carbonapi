@@ -2,10 +2,8 @@
 
 - name: install requirements
   package:
-    name: "{{ item }}"
+    name: "{{ carbonapi_dependencies }}"
     state: present
-  loop:
-    "{{ carbonapi_dependencies }}"
 
 - block:
     - name: add the apt signing key

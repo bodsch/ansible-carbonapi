@@ -9,12 +9,12 @@ lint: |
 
 platforms:
 
-  # - name: centos-7
-  #   image: paulfantom/centos-molecule:7
-  #   docker_host: "${DOCKER_HOST:-unix://run/docker.sock}"
-  #   privileged: true
-  #   volumes:
-  #     - /sys/fs/cgroup:/sys/fs/cgroup:ro
+  - name: centos-7
+    image: paulfantom/centos-molecule:7
+    docker_host: "${DOCKER_HOST:-unix://run/docker.sock}"
+    privileged: true
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
 
   # - name: centos-8
   #   image: paulfantom/centos-molecule:8
@@ -23,12 +23,12 @@ platforms:
   #   volumes:
   #     - /sys/fs/cgroup:/sys/fs/cgroup:ro
 
-  # - name: ubuntu-18
-  #   image: paulfantom/ubuntu-molecule:18.04
-  #   docker_host: "${DOCKER_HOST:-unix://run/docker.sock}"
-  #   privileged: true
-  #   volumes:
-  #     - /sys/fs/cgroup:/sys/fs/cgroup:ro
+  - name: ubuntu-18
+    image: paulfantom/ubuntu-molecule:18.04
+    docker_host: "${DOCKER_HOST:-unix://run/docker.sock}"
+    privileged: true
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
 
   # - name: debian-9
   #   image: paulfantom/debian-molecule:9
@@ -53,6 +53,7 @@ provisioner:
     defaults:
       host_key_checking: False
       deprecation_warnings: True
+      interpreter_python: auto
       # callback_whitelist: profile_tasks
       # gather_subset: '!hardware'
 

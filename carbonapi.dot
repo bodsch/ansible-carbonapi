@@ -1,0 +1,39 @@
+
+
+digraph D {
+
+  dpi = 196
+  newrank = true
+
+  node [
+    shape     = record
+  ]
+
+  edge [
+    arrowhead = normal
+    arrowsize = 0.7
+  ]
+
+  splines  = ortho;
+  ranksep  = 0.75;
+  nodesep  = 0.75;
+
+  subgraph monitoring {
+
+    grafana        [ label = "grafana" ]
+    carbonapi      [ label = "carbonapi" ]
+    go_carbon      [ label = "go-carbon" ]
+  }
+
+  subgraph extern {
+
+    collectd       [ label = collectd ]
+    graphyte       [ label = graphyte ]
+  }
+
+  collectd  -> go_carbon [ xlabel = " tcp/2003", decorate = false ]
+  graphyte  -> go_carbon [ xlabel = " tcp/2003", decorate = false ]
+
+  grafana   -> carbonapi [ xlabel = " tcp/8081", decorate = false ]
+  carbonapi -> go_carbon [ xlabel = " tcp/8080", decorate = false ]
+}
