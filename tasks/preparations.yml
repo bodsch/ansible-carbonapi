@@ -21,12 +21,6 @@
   when: ansible_os_family | lower == 'debian'
 
 - block:
-
-    # - name: Import EPEL GPG key.
-    #   rpm_key:
-    #     key: https://archive.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-{{ ansible_distribution_major_version }}
-    #     state: present
-
     - name: install go-graphite repository
       yum_repository:
         name: go-graphite_stable
@@ -44,6 +38,7 @@
   file:
     dest: "{{ item }}"
     state: directory
+    mode: 0755
   loop:
     - /etc/carbonapi
     - /var/log/carbonapi

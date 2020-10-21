@@ -5,6 +5,7 @@
     src: "etc/carbonapi/{{ item }}.j2"
     dest: "/etc/carbonapi/{{ item }}"
     backup: true
+    mode: 0666
   loop:
     - carbonapi.yaml
     - graphiteWeb.yaml
