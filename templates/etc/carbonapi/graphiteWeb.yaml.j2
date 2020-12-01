@@ -1,12 +1,13 @@
 # {{ ansible_managed }}
 #
+
 # to maintain backward compatibility, this function is disabled by default
-enabled: true
+enabled: false
 
 # roundrobin will be used in case multiple URLs are specified
-#fallbackUrls:
-#    - http://localhost:8081
-#    - http://localhost:8080
+# fallbackUrls:
+#   - http://localhost:8081
+#   - http://localhost:8080
 
 # if enabled, function will also check if supported parameters are the same
 strict: false
@@ -26,7 +27,7 @@ keepAliveInterval: "30s"
 # This will remove those functions from list of proxied ones
 # This is example and also suggestion for functions to remove.
 forceSkip:
-    - "aliasByTags"
-    - "seriesByTag"
-    - "groupByTags"
-    - "events"
+  - "aliasByTags"
+  - "seriesByTag"
+  - "groupByTags"
+  - "events"

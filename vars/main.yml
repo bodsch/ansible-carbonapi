@@ -6,7 +6,7 @@ _systemd_lib_directory:
   redhat: /usr/lib/systemd/system
 
 systemd_lib_directory: "{{
-  _systemd_lib_directory[ansible_os_family | lower] |
+          _systemd_lib_directory[ansible_os_family | lower] |
   default(_systemd_lib_directory['default']) }}"
 
 _carbonapi_dependencies:
@@ -18,5 +18,5 @@ _carbonapi_dependencies:
   redhat: []
 
 carbonapi_dependencies: "{{
-  _carbonapi_dependencies[ansible_os_family | lower] |
+          _carbonapi_dependencies[ansible_os_family | lower] |
   default(_carbonapi_dependencies['default']) }}"

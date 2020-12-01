@@ -1,14 +1,37 @@
 ---
 
-- name: create configs
+- name: create carbonapi.yaml
   template:
-    src: "etc/carbonapi/{{ item }}.j2"
-    dest: "/etc/carbonapi/{{ item }}"
+    src: "etc/carbonapi/carbonapi.yaml.j2"
+    dest: "/etc/carbonapi/carbonapi.yaml"
     backup: true
     mode: 0666
-  loop:
-    - carbonapi.yaml
-    - graphiteWeb.yaml
-    - graphTemplates.yaml
+  notify:
+    - restart carbonapi
+
+- name: create graphiteWeb.yaml
+  template:
+    src: "etc/carbonapi/graphiteWeb.yaml.j2"
+    dest: "/etc/carbonapi/graphiteWeb.yaml"
+    backup: true
+    mode: 0666
+  notify:
+    - restart carbonapi
+
+- name: create graphTemplates.yaml
+  template:
+    src: "etc/carbonapi/graphTemplates.yaml.j2"
+    dest: "/etc/carbonapi/graphTemplates.yaml"
+    backup: true
+    mode: 0666
+  notify:
+    - restart carbonapi
+
+- name: create timeShift.yaml
+  template:
+    src: "etc/carbonapi/timeShift.yaml.j2"
+    dest: "/etc/carbonapi/timeShift.yaml"
+    backup: true
+    mode: 0666
   notify:
     - restart carbonapi

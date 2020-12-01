@@ -1,0 +1,6 @@
+---
+
+go_carbon_version: latest
+
+go_carbon_used_cron_daemon: chrony
+go_carbon_clean_data_enabled: false
