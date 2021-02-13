@@ -4,18 +4,28 @@ dependencies: []
 
 
 galaxy_info:
-  author: bodsch
-  description: carbonapi
-  company: ''
-  license: "Apache"
-  min_ansible_version: 2.2
+  author: Bodo Schulz bodo@boone-schulz.de
+  description: install and configure carbonapi
+  license: Apache
+  min_ansible_version: 2.9
   platforms:
     - name: Ubuntu
       versions:
-        - 16.04
-        - 18.04
+        # 18.04
+        - bionic
+        # 20.04
+        - focal
     - name: Debian
       versions:
-        - 8
-        - 9
-        - 10
+        # 9
+        - etch
+        # 10
+        - buster
+
+  galaxy_tags:
+    - monitoring
+    - graphing
+    - carbon
+    - graphite
+
+dependencies: []
