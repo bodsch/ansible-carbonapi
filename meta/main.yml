@@ -1,8 +1,5 @@
 ---
 
-dependencies: []
-
-
 galaxy_info:
   author: Bodo Schulz bodo@boone-schulz.de
   description: install and configure carbonapi
