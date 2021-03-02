@@ -1,8 +1,9 @@
 ---
 
 galaxy_info:
+  role_name: carbonapi
   author: Bodo Schulz bodo@boone-schulz.de
-  description: install and configure carbonapi
+  description: install and configure carbonapi, a replacement graphite API server
   license: Apache
   min_ansible_version: 2.9
   platforms:
