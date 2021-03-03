@@ -3,7 +3,7 @@
 # you should set it to URL of go-carbon's carbonserver module
 # or graphite-clickhouse's http url.
 # Listen address, should always include hostname or ip address and a port.
-carbonapi_listen: 'localhost:8088'
+carbonapi_listen: '0.0.0.0:8088'
 
 # Cache configurations
 # Type of caching. Valid: "mem", "memcache", "null"

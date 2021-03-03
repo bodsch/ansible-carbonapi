@@ -83,7 +83,7 @@ def test_storage_schemas(host):
     config_file = "/etc/carbonapi/carbonapi.yaml"
     content = host.file(config_file).content_string
 
-    assert 'listen: "localhost:8088"' in content
+    assert 'listen: "0.0.0.0:8088"' in content
     # assert 'host: "127.0.0.1:2003"' in content
     # assert 'interval: "30s"' in content
     # assert '"http://127.0.0.1:8081"' in content

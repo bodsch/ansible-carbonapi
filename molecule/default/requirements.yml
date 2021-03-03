@@ -1,6 +1,6 @@
 ---
 
 - name: go-carbon
-  src: https://gitlab.com/bodsch/ansible-go-carbon.git
+  src: https://github.com/bodsch/ansible-go-carbon.git
   scm: git
-  version: 1.2.0
+  version: 1.3.0
