@@ -5,7 +5,20 @@
   environment:
     NETRC: ''
 
-  tasks:
+  pre_tasks:
+    - name: update package cache
+      apt:
+        update_cache: true
+      when:
+        - ansible_os_family | lower == 'debian'
+
+    - name: install netstat
+      package:
+        name: [ net-tools, iproute2 ]
+        state: present
+      when:
+        - ansible_os_family | lower in [ 'archlinux', 'debian' ]
+
     - debug:
         msg:
           - "os family            : {{ ansible_os_family }}"
