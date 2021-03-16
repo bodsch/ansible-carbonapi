@@ -2,6 +2,7 @@
 
 galaxy_info:
   role_name: carbonapi
+  namespace: bodsch
   author: Bodo Schulz bodo@boone-schulz.de
   description: install and configure carbonapi, a replacement graphite API server
   license: Apache
@@ -19,6 +20,9 @@ galaxy_info:
         - etch
         # 10
         - buster
+    - name: EL
+      versions:
+        - 8
 
   galaxy_tags:
     - monitoring
