@@ -23,7 +23,6 @@ Tested on
 * Ubuntu 18.04 / 20.04
 * CentOS 8
 * OracleLinux 8
-* Oracle Linux 8
 
 ## Communication relationship
 
@@ -32,7 +31,7 @@ Tested on
 ## tests
 
 ```
-tox -e py38-ansible29 -- molecule test
+$ tox -e py38-ansible29 -- molecule test
 ```
 
 
