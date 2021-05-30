@@ -54,14 +54,17 @@ notFoundStatusCode: 404
 concurency: 1000
 
 cache:
-  type: "{{ carbonapi_cache_type }}"
-  size_mb: {{ carbonapi_cache_size_mb | int }}
-  defaultTimeoutSec: {{ carbonapi_cache_default_timeout | int }}
+  type: "{{ carbonapi_cache.type }}"
+  size_mb: {{ carbonapi_cache.size_mb | int }}
+  defaultTimeoutSec: {{ carbonapi_cache.default_timeout | int }}
+{% if carbonapi_cache.type == "memcache" %}
   memcachedServers:
-{% if carbonapi_cache_memcached_servers is defined and carbonapi_cache_memcached_servers | count != 0 %}
-{% for host in carbonapi_cache_memcached_servers %}
+{% if carbonapi_cache.memcached_servers is defined and
+      carbonapi_cache.memcached_servers | type == "list" %}
+{% for host in carbonapi_cache.memcached_servers %}
     - "{{ host }}"
 {% endfor %}
+{% endif %}
 {% endif %}
 
 # Amount of CPUs to use. 0 - unlimited
@@ -80,10 +83,10 @@ functionsConfig:
 maxBatchSize: 100
 
 graphite:
-  host: "{{ carbonapi_graphite_host }}"
-  interval: "{{ carbonapi_graphite_interval }}"
-  prefix: "{{ carbonapi_graphite_prefix }}"
-  pattern: "{{ carbonapi_graphite_pattern }}"
+  host: "{{ carbonapi_graphite.host }}"
+  interval: "{{ carbonapi_graphite.interval }}"
+  prefix: "{{ carbonapi_graphite.prefix }}"
+  pattern: "{{ carbonapi_graphite.pattern }}"
 
 # Configures how often keep alive packets will be sent out
 keepAliveInterval: "30s"
@@ -215,29 +218,15 @@ graphTemplates: {{ carbonapi_graph_templates }}
 expireDelaySec: {{ carbonapi_expire_delay | int }}
 
 logger:
-  # Available Loggers:
-  #   "" - global for all
-  #   "main" - what's before start
-  #   "find" - for find handler
-  #   "info" - for info handler
-  #   "loadbalancer" - for lb handler
-  #   "probe" - for background probes
-  #   "render" - for render handler
-  #   "slow" - slow query log ("Slow reuqest" messages)
-  #   "access" - access logs (requests, times, etc)
-  # Please note that if you want to have all logs going to stdout and access logs going to file,
-  # you need to define 2 sections for access logger (file + stdout) + one section for logger ""
-  - logger: ""
-    file: "stderr"
-    level: "debug"
-    encoding: "console"
-    encodingTime: "iso8601"
-    encodingDuration: "seconds"
-
-  - logger: ""
-    file: "{{ carbonapi_logger_logfile }}"
-    level: "{{ carbonapi_logger_loglevel }}"
-    encoding: "console"
+{% for logger,v  in carbonapi_logger.items() %}
+{% set l = carbonapi_logger[logger] %}
+{% set _logger =  l['logger'] %}
+{% set _ = l.pop('logger') %}
+  - logger: {{ _logger  }}
+{% for k, v in l.items() %}
+    {{ k }}: "{{ v }}"
+{% endfor %}
+{% endfor %}
 
 # tagdb:
 #   url: "http://127.0.0.1:9090"

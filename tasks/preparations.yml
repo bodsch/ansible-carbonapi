@@ -17,8 +17,8 @@
       apt_repository:
         repo: deb https://packagecloud.io/go-graphite/stable/ubuntu/ bionic main
         state: present
-
-  when: ansible_os_family | lower == 'debian'
+  when:
+    - ansible_os_family | lower == 'debian'
 
 - block:
     - name: install go-graphite repository
@@ -31,14 +31,22 @@
         failovermethod: priority
         gpgcheck: 0
         enabled: 1
+  when:
+    - ansible_os_family | lower == 'redhat'
 
-  when: ansible_os_family | lower == 'redhat'
+- name: merge carbonapi logger configuration between defaults and custom
+  set_fact:
+    carbonapi_logger: "{{ carbonapi_logger_default |
+      combine( carbonapi_logger, recursive=True ) }}"
 
-- name: create required directories
-  file:
-    dest: "{{ item }}"
-    state: directory
-    mode: 0755
-  loop:
-    - /etc/carbonapi
-    - /var/log/carbonapi
+- name: merge carbonapi graphite configuration between defaults and custom
+  set_fact:
+    carbonapi_graphite: "{{ carbonapi_graphite_default |
+      combine( carbonapi_graphite, recursive=True ) }}"
+
+- name: merge carbonapi cache configuration between defaults and custom
+  set_fact:
+    carbonapi_cache: "{{ carbonapi_cache_default |
+      combine( carbonapi_cache, recursive=True ) }}"
+
+...
