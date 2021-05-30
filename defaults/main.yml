@@ -17,7 +17,72 @@ carbonapi_cpu: 0
 # see examples under molecule/defaults/group_vars/all/vars.yml
 carbonapi_graphite: {}
 
-carbonapi_upstreams: {}
+# TODO
+carbonapi_upstreams:
+  tldCacheDisabled: false
+  buckets: 10
+  timeouts:
+    find: "2s"
+    render: "10s"
+    connect: "200ms"
+  concurrencyLimitPerServer: 0
+  keepAliveInterval: "30s"
+  maxIdleConnsPerHost: 100
+  doMultipleRequestsIfSplit: false
+  #
+  carbonsearch: {}
+  carbonsearch_v2:
+    prefix: "virt.v1.*"
+    backends:
+      - shard_1:
+        protocol: "carbonapi_v2_pb"
+        lbMethod: "rr"
+        servers:
+          - "http://192.168.1.1:8080"
+          - "http://192.168.1.2:8080"
+      - shard_2:
+        protocol: "carbonapi_v2_pb"
+        lbMethod: "rr"
+        servers:
+          - "http://192.168.1.3:8080"
+          - "http://192.168.1.4:8080"
+  #
+  backends: {}
+  backends_v2:
+    - go-carbon-group1:
+      protocol: "carbonapi_v3_pb"
+      lbMethod: "broadcast"
+      maxTries: 3
+      maxBatchSize: 100
+      keepAliveInterval: "10s"
+      concurrencyLimit: 0
+      maxIdleConnsPerHost: 1000
+      timeouts:
+        find: "2s"
+        render: "50s"
+        connect: "200ms"
+      servers:
+        - "http://192.168.0.1:8080"
+        - "http://192.168.0.2:8080"
+    - go-carbon-legacy:
+      protocol: "carbonapi_v2_pb"
+      lbMethod: "broadcast"
+      maxBatchSize: 10
+      concurrencyLimit: 0
+      maxIdleConnsPerHost: 100
+      servers:
+        - "http://192.168.0.3:8080"
+        - "http://192.168.0.4:8080"
+    - prometheus:
+      maxBatchSize: 0
+      concurrencyLimit: 0
+      maxIdleConnsPerHost: 1000
+      protocol: "prometheus"
+      lbMethod: "broadcast"
+      servers:
+        - "http://192.168.0.5:9090"
+        - "http://192.168.0.6:9090"
+
 
 # # Maximum backend request time for find requests.
 # carbonapi_upstreams_timeouts_find: 2s

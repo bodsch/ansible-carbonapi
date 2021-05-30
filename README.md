@@ -32,10 +32,7 @@ Tested on
 ```
 carbonapi_listen: '0.0.0.0:8088'
 
-carbonapi_cache_type: mem
-carbonapi_cache_size_mb: 5
-carbonapi_cache_default_timeout: 60
-carbonapi_cache_memcached_servers: []
+carbonapi_cache: {}
 
 carbonapi_cpu: 0
 
@@ -50,7 +47,14 @@ carbonapi_expire_delay: 60
 carbonapi_logger: {}
 ```
 
+### upstreams
+
+[upstream doc](https://github.com/go-graphite/carbonapi/blob/main/doc/configuration.md#upstreams)
+
+
 ### cache
+
+[upstream doc](https://github.com/go-graphite/carbonapi/blob/main/doc/configuration.md#cache)
 
 Valid types are `mem`, `memcache` or `null`.
 
@@ -79,6 +83,8 @@ carbonapi_cache:
 
 ### send internal metrics
 
+[upstream doc](https://github.com/go-graphite/carbonapi/blob/main/doc/configuration.md#graphite)
+
 ```
 carbonapi_graphite:
   host: '127.0.0.1:2003'
@@ -88,6 +94,8 @@ carbonapi_graphite:
 ```
 
 ### define logging
+
+[upstream doc](https://github.com/go-graphite/carbonapi/blob/main/doc/configuration.md#logger)
 
 Available Loggers:
 
