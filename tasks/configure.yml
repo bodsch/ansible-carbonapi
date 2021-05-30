@@ -1,5 +1,19 @@
 ---
 
+- name: create /etc/carbonapi directory
+  file:
+    dest: /etc/carbonapi
+    state: directory
+    owner: carbon
+    mode: 0755
+
+- name: create /var/log/carbonapi directory
+  file:
+    dest: /var/log/carbonapi
+    state: directory
+    owner: carbon
+    mode: 0755
+
 - name: create carbonapi.yaml
   template:
     src: "etc/carbonapi/carbonapi.yaml.j2"
@@ -35,3 +49,5 @@
     mode: 0666
   notify:
     - restart carbonapi
+
+...

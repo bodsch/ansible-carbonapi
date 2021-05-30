@@ -1,1 +1,25 @@
- 
+---
+
+carbonapi_logger:
+  logfile_main:
+    logger: "main"
+    file: /var/log/carbonapi/carbonapi_main.log
+    level: debug
+
+  carbonapi.log:
+    logger: "access"
+    file: /var/log/carbonapi/carbonapi_access.log
+    level: info
+
+carbonapi_graphite:
+  host: '127.0.0.1:2003'
+  interval: "320s"
+
+carbonapi_cache:
+  type: memcache
+  size_mb: 5
+  default_timeout: 60
+  memcached_servers:
+    - 127.0.0.1:1234
+
+...
