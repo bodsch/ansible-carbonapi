@@ -17,6 +17,8 @@ carbonapi_cpu: 0
 # see examples under molecule/defaults/group_vars/all/vars.yml
 carbonapi_graphite: {}
 
+carbonapi_upstreams: {}
+
 # # Maximum backend request time for find requests.
 # carbonapi_upstreams_timeouts_find: 2s
 # # Maximum backend request time for render requests.
