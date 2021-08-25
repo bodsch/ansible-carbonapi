@@ -1,4 +1,6 @@
 
+# Ansible Role:  `carbonapi`
+
 ansible role to install and configure carbonapi.
 
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/bodsch/ansible-carbonapi/CI)][ci]
@@ -29,7 +31,7 @@ Tested on
 
 ## usage
 
-```
+```yaml
 carbonapi_listen: '0.0.0.0:8088'
 
 carbonapi_cache: {}
@@ -60,7 +62,7 @@ Valid types are `mem`, `memcache` or `null`.
 
 Default are `mem`
 
-```
+```yaml
 carbonapi_cache:
   type: mem
   size_mb: 5
@@ -69,7 +71,7 @@ carbonapi_cache:
 
 You can also use an Memcache cluster:
 
-```
+```yaml
 carbonapi_cache:
   type: memcache
   size_mb: 5
@@ -85,7 +87,7 @@ carbonapi_cache:
 
 [upstream doc](https://github.com/go-graphite/carbonapi/blob/main/doc/configuration.md#graphite)
 
-```
+```yaml
 carbonapi_graphite:
   host: '127.0.0.1:2003'
   interval: "60s"
@@ -114,7 +116,7 @@ you need to define 2 sections for access logger (file + stdout) + one section fo
 
 Loglevel can be "debug", "info", "warn", "error", "fatal", "panic"
 
-```
+```yaml
 carbonapi_logger:
   stderr:
     logger: ""
@@ -132,16 +134,17 @@ carbonapi_logger:
 
 ## tests
 
-```
-$ tox -e py38-ansible29 -- molecule test
+```bash
+tox -e py38-ansible29 -- molecule test
 ```
 
 
 ## install packages
-https://packagecloud.io/go-graphite/stable/install#manual
+
+[install manual](https://packagecloud.io/go-graphite/stable/install#manual)
 
 ## example configurations
 
-under https://github.com/go-graphite/carbonapi/tree/0.12/cmd/carbonapi
+[repo](https://github.com/go-graphite/carbonapi/tree/0.12/cmd/carbonapi)
 
-https://github.com/go-graphite/carbonapi/blob/0.12/cmd/carbonapi/carbonapi.example.yaml
+[example](https://github.com/go-graphite/carbonapi/blob/0.12/cmd/carbonapi/carbonapi.example.yaml)
